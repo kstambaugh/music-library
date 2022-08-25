@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+
 
 function AlbumView() {
+    const navigate = useNavigate()
     const { id } = useParams()
     const [albumData, setAlbumData] = useState([])
 
@@ -24,9 +26,18 @@ function AlbumView() {
             </div>
         )
     })
+    const NavButtons = () => {
+        return (
+            <div>
+                <button onClick={() => navigate(-1)}>Back</button>
+                <button onClick={() => navigate('/')}>Home</button>
+            </div>
+        )
+    }
 
     return (
         <div>
+            {NavButtons()}
             {renderSongs}
         </div>
     )
